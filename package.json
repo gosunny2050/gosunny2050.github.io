@@ -1,0 +1,12 @@
+{
+  "name": "github-pages-index",
+  "version": "1.0.0",
+  "main": "generate-index.js",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "scripts": {
+    "build": "node generate-index.js"
+  }
+}
+
