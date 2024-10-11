@@ -3,7 +3,7 @@ name: Deploy GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master  # Adjust this if your default branch is 'main'
 
 jobs:
   build:
@@ -22,11 +22,22 @@ jobs:
       run: npm install
 
     - name: Generate index.html
-      run: node generate-index.js  # 运行生成索引的脚本
+      run: node generate-index.js  # Your script to generate index.html
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add index.html
+        git commit -m "Update index.html"
+        git push origin master  # Push changes to the 'master' branch
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./  # 部署生成的 index.html 文件
+        publish_branch: master  # Set this to 'master' if you want GitHub Pages to serve from 'master'
+        publish_dir: ./  # Directory containing the generated index.html
 
