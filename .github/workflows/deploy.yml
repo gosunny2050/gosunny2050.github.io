@@ -3,7 +3,7 @@ name: Deploy GitHub Pages go go go
 on:
   push:
     branches:
-      - master  # Adjust this if your default branch is 'main'
+      - main  # Adjust this if your default branch is 'main'
 
 jobs:
   build:
