@@ -24,14 +24,11 @@ jobs:
     - name: Generate index.html
       run: node generate-index.js  # 生成 index.html 的脚本
 
-    - name: Generate web.html
-      run: node web.js  # 生成 web.html 的脚本
-
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add index.html web.html
+        git add index.html
         if [ -n "$(git status --porcelain)" ]; then
           git commit -m "Update generated HTML files"
         else
