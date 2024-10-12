@@ -24,6 +24,9 @@ jobs:
     - name: Generate index.html
       run: node generate-index.js  # Your script to generate index.html
 
+    - name: Generate web.html
+      run: node web.js
+
     - name: Commit and push changes
       run: |
         git config --local user.email "action@github.com"
