@@ -31,6 +31,7 @@ jobs:
         git add index.html
         if [ -n "$(git status --porcelain)" ]; then
           git commit -m "Update generated HTML files"
+          git push
         else
           echo "No changes to commit"
         fi
