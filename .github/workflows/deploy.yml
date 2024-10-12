@@ -27,13 +27,18 @@ jobs:
     - name: Generate web.html
       run: node web.js
 
-    - name: Commit and push changes
-      run: |
+    - name: Commit changes
+       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add index.html
-        git commit -m "Update index.html"
-        git push  # Push changes to the 'master' branch
+        git add web.html
+        if [ -n "$(git status --porcelain)" ]; then
+         git commit -m "Update code"
+         git push
+        else
+         echo "No changes to commit"
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
