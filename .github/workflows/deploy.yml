@@ -30,7 +30,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add index.html
         git commit -m "Update index.html"
-        git push origin master  # Push changes to the 'master' branch
+        git push  # Push changes to the 'master' branch
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
