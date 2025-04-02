@@ -28,7 +28,7 @@ async function fetchAllRepos() {
     console.error('Error fetching repositories:', error);
   }
 
-  return allRepos.reverse();
+  return allRepos.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
 }
 
 // 生成 HTML 文件
