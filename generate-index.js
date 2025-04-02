@@ -28,7 +28,7 @@ async function fetchAllRepos() {
     console.error('Error fetching repositories:', error);
   }
 
-  return allRepos;
+  return allRepos.reverse();
 }
 
 // 生成 HTML 文件
