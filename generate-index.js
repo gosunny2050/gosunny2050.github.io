@@ -27,7 +27,25 @@ async function fetchAllRepos() {
   } catch (error) {
     console.error('Error fetching repositories:', error);
   }
-  return allRepos.filter(repo => repo.name !== 'gosunny2050.github.io').sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+  return allRepos
+  .filter(repo => repo.name !== 'gosunny2050.github.io')
+  .sort((a, b) => {
+    // 定义优先显示的仓库名称列表
+    const priorityNames = ['misc', 'image-processing', 'predict_function', 'fast-api-track', 'sisyphus', 'GitHubDaily', 'Chat2DB', 'backgroundremover'];
+    const aIsPriority = priorityNames.includes(a.name);
+    const bIsPriority = priorityNames.includes(b.name);
+
+    // 如果两者都是优先项，按列表中的顺序排序
+    if (aIsPriority && bIsPriority) {
+      return priorityNames.indexOf(a.name) - priorityNames.indexOf(b.name);
+    }
+    // 如果只有一个是优先项，优先显示
+    if (aIsPriority) return -1;
+    if (bIsPriority) return 1;
+
+    // 非优先项按时间排序
+    return new Date(b.pushed_at) - new Date(a.pushed_at);
+  });
 }
 
 // 生成 HTML 文件
