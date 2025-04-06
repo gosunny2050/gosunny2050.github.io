@@ -27,8 +27,7 @@ async function fetchAllRepos() {
   } catch (error) {
     console.error('Error fetching repositories:', error);
   }
-
-  return allRepos.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+  return allRepos.filter(repo => repo.name !== 'gosunny2050.github.io').sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
 }
 
 // 生成 HTML 文件
